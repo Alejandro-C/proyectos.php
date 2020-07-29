@@ -1,0 +1,242 @@
+/* FUENTES */
+
+
+/* @font-face {
+    font-family: 'nombre de la fuente';
+    src: url(../font/'fuente');
+    font-weight: normal;
+    font-style: normal;
+} */
+
+
+/* GLOBALES */
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body {
+    background: #efefef;
+    font-family: sans-serif;
+}
+
+.clearfix {
+    clear: both;
+    float: none;
+}
+
+.alerta {
+    padding: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: green;
+}
+
+.alerta-error {
+    color: red;
+}
+
+
+/* HEADER */
+
+header.cabecera {
+    width: 1200px;
+    height: auto;
+    background: transparent;
+    margin: 0 auto;
+}
+
+
+/* logo */
+
+header.cabecera div.logo {
+    float: left;
+    width: 500px;
+    height: 100px;
+}
+
+header.cabecera div.logo a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    letter-spacing: 2px;
+    color: #2979cd;
+    text-shadow: 0 0 0 #000000, 1px 1px 0 #000000, 2px 2px 0 #000000;
+    line-height: 70px;
+    margin-left: 10px;
+}
+
+header.cabecera div.logo a:hover {
+    cursor: pointer;
+    text-shadow: 0 0 0 #000000, -1px -1px 0 #000000, -2px -2px 0 #000000;
+}
+
+
+/* menu */
+
+header.cabecera nav.menu {
+    clear: both;
+    width: 100%;
+    height: 35px;
+    background: linear-gradient(to bottom, #f9f9f9 0px, #d1d1d1 100%);
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #cccccc;
+    overflow: hidden;
+}
+
+header.cabecera nav.menu ul {
+    list-style: none;
+}
+
+nav.menu ul li {
+    float: left;
+    line-height: 40px;
+    border-right: 1px solid #d6d6d6;
+}
+
+nav.menu ul li a {
+    padding: 10px;
+    font-size: 17px;
+    color: #555555;
+}
+
+nav.menu ul li a:hover {
+    background: linear-gradient(to bottom, #f2f2f2 0px, #a1a1a1 100%);
+}
+
+
+/* FIN HEADER */
+
+
+/* CONTENEDOR */
+
+div.contenedor {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+
+/* barra lateral */
+
+aside.sidebar {
+    float: right;
+    width: 27%;
+}
+
+aside.sidebar div.bloque {
+    display: block;
+    width: 90%;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #ffffff;
+    box-shadow: 0 0 5px #a1a1a1;
+}
+
+aside.sidebar div.bloque h3 {
+    margin-bottom: 10px;
+}
+
+label,
+form input[type='text'],
+form input[type='email'],
+form input[type='password'] {
+    display: block;
+    width: 95%;
+    margin: 2px 0;
+}
+
+form input[type='text'],
+form input[type='email'],
+form input[type='password'] {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+form input[type='submit'],
+form input[type='button'],
+.boton {
+    width: 160px;
+    margin: 5px auto 0;
+    padding: 8px;
+    border-radius: 2px;
+    border: 1px solid #156785;
+    background-color: #007ee5;
+    color: #ffffff;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+}
+
+
+/* principal */
+
+div.principal {
+    float: left;
+    width: 70%;
+    min-height: 450px;
+    padding: 15px 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px #bbbbbb;
+    overflow: hidden;
+}
+
+div.principal h2 {
+    font-size: 30px;
+    color: #222222;
+    margin-bottom: 10px;
+}
+
+article.entrada a {
+    color: #000000;
+}
+
+article.entrada a h3 {
+    font-size: 20px;
+    color: #316ab6;
+    margin: 25px 0 5px;
+}
+
+article.entrada a span.fecha {
+    font-size: 15px;
+    color: #666666;
+}
+
+article.entrada a p {
+    margin-top: 10px;
+}
+
+div.principal div.ver-todas a {
+    width: 160px;
+    margin: 30px auto 0;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid #156785;
+    background-color: #007ee5;
+    color: #ffffff;
+    display: block;
+    cursor: pointer;
+}
+
+
+/* FIN CONTENEDOR */
+
+
+/* FOOTER */
+
+footer.pie {
+    clear: both;
+    width: 1200px;
+    margin: 20px auto 0;
+    padding: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #c9c9c9;
+    color: #555555;
+    background: linear-gradient(to bottom, #f2f2f2 0px, #d1d1d1 100%);
+    text-align: center;
+}
+
+
+/* FIN FOOTER */
