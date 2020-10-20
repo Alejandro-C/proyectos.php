@@ -5,4 +5,12 @@ class Utils{
             $_SESSION[$name] = null;
         }
     }
+
+    public static function isAdmin(){
+        if(!isset($_SESSION['admin'])){
+            header("location:".base_url);
+        } else {
+            return true;
+        }
+    }
 }
