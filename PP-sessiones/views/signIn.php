@@ -9,12 +9,13 @@
 
     if(isset($_POST) && count($_POST) != 0){
         $userController = new UserController();
+        $db = DataBase::connect();
         $userData = array();
 
         // obteniendo los datos enviardos
-        $userData['user'] = isset($_POST['user']) ? trim($_POST['user']) : false;
-        $userData['email'] = isset($_POST['email']) ? trim($_POST['email']) : false;
-        $userData['password'] = isset($_POST['password']) ? trim($_POST['password']) : false;
+        $userData['user'] = isset($_POST['user']) ? mysqli_real_escape_string($db, trim($_POST['user'])) : false;
+        $userData['email'] = isset($_POST['email']) ? mysqli_real_escape_string($db, trim($_POST['email'])) : false;
+        $userData['password'] = isset($_POST['password']) ? mysqli_real_escape_string($db, trim($_POST['password'])) : false;
 
         // validandar los datos enviados
         $errors = $userController->validatingSignIn($userData);
@@ -73,7 +74,14 @@
         <label for="password" class="form-label">Contraseña:</label>
         <input type="password" class="form-control <?=$utilsModel->putClass($errors, 'password')?>" 
                 id="password" name="password">
-
+        
+        <div class="form-check ms-2 mt-1">
+            <input class="form-check-input" type="checkbox" value="on" id="showPassword" onclick="showPass();">
+            <label class="form-check-label" for="showPassword">
+                Mostrar contraseña
+            </label>
+        </div>
+        
         <?php if(isset($errors['password'])): ?>
             <p class="ms-2 text-danger"><?= $errors['password'] ?></p>
         <?php endif; ?>
@@ -86,3 +94,16 @@
 
     <p class="text-center">¿Ya estas registrado? <a href="<?=base_url?>?controller=User&action=login">Iniciar Sesion</a></p>
 </form>
+
+<script>
+    function showPass(){
+        let checkbox = document.getElementById('showPassword');
+        let inputPass = document.getElementById('password');
+
+        if(checkbox.checked){
+            inputPass.type = 'text'
+        } else {
+            inputPass.type = 'password'
+        }
+    }
+</script>
