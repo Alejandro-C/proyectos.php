@@ -10,6 +10,8 @@
 </head>
 <body>
     <?php
+        session_start();
+
         // validando que tipo de contenedor mostrar
         $container = 'container';
         if(isset($_GET['action']) == 'signIn' || isset($_GET['action']) == 'login'):
@@ -24,12 +26,25 @@
                 </a>
 
                 <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-decoration-none text-light fs-3" href="<?=base_url?>?controller=User&action=signIn">Registrarse</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-decoration-none text-light fs-3" href="<?=base_url?>?controller=User&action=login">Iniciar Sesion</a>
-                    </li>
+                    <?php if(isset($_SESSION['user'])): ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light fs-3" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                <?= $_SESSION['user']->user ?> - <?= $_SESSION['user']->email ?>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Mis datos</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="<?=base_url?>?controller=User&action=logout">Cerrar Sesion</a></li>
+                            </ul>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link text-decoration-none text-light fs-3" href="<?=base_url?>?controller=User&action=signIn">Registrarse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-decoration-none text-light fs-3" href="<?=base_url?>?controller=User&action=login">Iniciar Sesion</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </nav>

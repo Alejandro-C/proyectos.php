@@ -1,4 +1,8 @@
 <?php
+
+if(!session_status()) session_start();
+
+
 require_once 'autoload.php';
 require_once 'config/db.php';
 require_once 'config/parameters.php';
@@ -13,7 +17,7 @@ function show_error(){
 // validamos si se envia un controlador por la URL
 if (isset($_GET['controller'])) {
     $nombre_controlador = $_GET['controller'] .'Controller';
-} elseif (!isset($_GET['controller']) && !isset($_GET['action'])){
+} elseif (!isset($_GET['controller'])){
     // si no encuantra un controlador toma el que esta por defecto
     $nombre_controlador = controller_default;
 } else {

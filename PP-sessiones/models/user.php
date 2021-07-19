@@ -25,7 +25,7 @@ class User{
         $this->password = $password;
     }
 
-    // $typeInput : (emial/user) para saber si se intenta logear 
+    // $typeInput : (email/user) para saber si se intenta logear 
     //              ingresando email o el nombre de usuario.
     // $value : el email que ingreso o el nombre de usuario.
     function getUserToLogin($typeInput, $value, $password){
@@ -65,6 +65,14 @@ class User{
         $query = "SELECT * FROM users;";
         $users = $this->db->query($query);
         $users = $users->fetch_all();
+
+        return $users;
+    }
+
+    function getUser(){
+        $query = "SELECT * FROM users WHERE id=".$this->id.";";
+        $users = $this->db->query($query);
+        $users = $users->fetch_object();
 
         return $users;
     }

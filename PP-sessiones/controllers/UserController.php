@@ -2,6 +2,16 @@
 require_once 'models/user.php';
 
 class UserController{
+    private $userId;
+
+    public function getUserData(){
+        $userModel = new User();
+        $userModel->setId($this->userId);
+        $user = $userModel->getUser();
+
+        return $user;
+    }
+
     public function index(){
         require_once 'views/home.php';
     }
@@ -46,9 +56,7 @@ class UserController{
             if($userModel->getUserbyUser($userData['user'])){
                 $errors['user'] = "El nombre de usuario ya existe, prueba con otro.";
             }
-        } else {
-            $errors['user'] = "El nombre de usuario no es valido";
-        }
+        } else $errors['user'] = "El nombre de usuario no es valido";
 
         // validar el email
         if(!empty($userData['email']) && filter_var($userData['email'], FILTER_VALIDATE_EMAIL)){
@@ -65,9 +73,7 @@ class UserController{
             if(strlen($userData['password']) < 8 || strlen($userData['password']) > 15){
                 $errors['password'] = "La contraseña debe contener entre 8 a 15 caracteres";
             }
-        } else {
-            $errors['password'] = "La contraseña esta vacia";
-        }
+        } else $errors['password'] = "La contraseña esta vacia";
 
         return $errors;
     }
@@ -116,28 +122,36 @@ class UserController{
                     $user = 'user';
                 }
             }
-        } else {
-            $errors['user'] = "Este campo esta vacio.";
-        }
+        } else $errors['user'] = "Este campo esta vacio.";
 
         // validar la contraseña
         if(!empty($userData['password'])){
             if(strlen($userData['password']) < 8 || strlen($userData['password']) > 15){
                 $errors['password'] = "La contraseña debe contener entre 8 a 15 caracteres";
             }
-        } else {
-            $errors['password'] = "La contraseña esta vacia";
-        }
+        } else $errors['password'] = "La contraseña esta vacia";
 
         // validar usuario/email y contraseña
-        if(($user == 'email' || $user == 'user') && ($userModel->getUserToLogin($user, $userData['user'], $userData['password']))){
-            // se inicia sesion
-            echo "Todo bien todo correcto";
-            die();
-        } else {
-            $errors['password'] = "Contraseña incorrecta";  
+        if($user == 'email' || $user == 'user'){
+            // si la contraseña no es correcta el metodo getUserToLogin retorna un false
+            // caso contrario retorna los datos del usuario que esta iniciando sesion
+            $response = $userModel->getUserToLogin($user, $userData['user'], $userData['password']);
+            
+            // validar si la contraseña en correcta
+            if($response) {
+                $this->userId = $response->id;
+            }
+            else $errors['password'] = "Contraseña incorrecta";  
         }
 
         return $errors;
+    }
+
+    public function logout(){
+        if(isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+        }
+
+        header('location:'.base_url);
     }
 }

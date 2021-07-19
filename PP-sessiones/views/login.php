@@ -15,9 +15,10 @@
         $errors = $userController->validatingLogin($userData);
 
         if(count($errors) == 0){
-            echo "Iniciaste sesion";
+            $user = $userController->getUserData();
 
             // Iniciar Sesion
+            $_SESSION['user'] = $user;
             header('Location:'.base_url);
         } else {
             // autocompletar los datos en el formulario
